@@ -2,7 +2,7 @@ import { authKey } from "@/constants/authkey";
 import setAccessToken from "@/services/actions/setAccessToken";
 import { getNewAccessToken } from "@/services/auth.services";
 import { IGenericErrorResponse, ResponseSuccessType } from "@/types/common";
-import { getFromLocalStorage, setToLocalStorage } from "@/utils/local-sorage";
+import { getFromLocalStorage, setToLocalStorage } from "@/utils/local-storage";
 import axios from "axios";
 
 const instance = axios.create();

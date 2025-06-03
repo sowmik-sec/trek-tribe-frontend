@@ -1,5 +1,7 @@
 import { FieldValues } from "react-hook-form";
 import setAccessToken from "./setAccessToken";
+import { setToLocalStorage } from "@/utils/local-storage";
+import { authKey } from "@/constants/authkey";
 
 export const userLogin = async (data: FieldValues) => {
   const res = await fetch(
@@ -15,7 +17,8 @@ export const userLogin = async (data: FieldValues) => {
   );
   const userInfo = await res.json();
   if (userInfo.data.accessToken) {
-    setAccessToken(userInfo.data.accessToken, { redirect: "/dashboard" });
+    setToLocalStorage(authKey, userInfo.data.accessToken);
+    setAccessToken(userInfo.data.accessToken, { redirect: "/" });
   }
   return userInfo;
 };

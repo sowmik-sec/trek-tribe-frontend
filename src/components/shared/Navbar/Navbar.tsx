@@ -15,9 +15,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC, useState, useEffect } from "react";
 import logo from "./logo.png";
-import useUserInfo from "@/hooks/useUserInfo";
 import { logoutUser } from "@/services/actions/logoutUser";
 import { useRouter } from "next/navigation";
+import useUserInfo from "@/hooks/useUserInfo";
 
 const LoginButton = styled(Button)(({ theme }) => ({
   background: "linear-gradient(45deg, #3B82F6, #8B5CF6)",
@@ -106,10 +106,15 @@ const NavLinkButton = styled(Button)(({ theme }) => ({
 
 const Navbar: FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const isAuthenticated = useUserInfo();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // const isAuthenticated = !!useUserInfo();
   const router = useRouter();
   const theme = useTheme(); // Access MUI theme for breakpoint debugging
-
+  const currentUserInfo = !!useUserInfo();
+  useEffect(() => {
+    setIsAuthenticated(!!currentUserInfo);
+  }, [currentUserInfo]);
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -120,6 +125,8 @@ const Navbar: FC = () => {
 
   const handleLogOut = () => {
     logoutUser(router);
+    setIsAuthenticated(false);
+    handleClose();
   };
 
   // Debug breakpoint changes
