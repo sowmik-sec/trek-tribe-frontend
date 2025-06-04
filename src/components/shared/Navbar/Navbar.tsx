@@ -236,7 +236,7 @@ const Navbar: FC = () => {
             </Link>
           )}
           {!isAuthenticated && (
-            <Link href="/signup" passHref>
+            <Link href="/register" passHref>
               <SignupButton variant="contained">Signup</SignupButton>
             </Link>
           )}
