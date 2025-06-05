@@ -1,4 +1,3 @@
-import { Typography } from "@mui/material";
 import React from "react";
 import HeroSection from "@/components/ui/homepage/HeroSection";
 
