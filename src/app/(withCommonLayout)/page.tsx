@@ -1,10 +1,11 @@
 import { Typography } from "@mui/material";
 import React from "react";
+import HeroSection from "@/components/ui/homepage/HeroSection";
 
 const HomePage = () => {
   return (
     <div>
-      <Typography variant="h3">This is homepage</Typography>
+      <HeroSection/>
     </div>
   );
 };
